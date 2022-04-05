@@ -36,6 +36,7 @@ int main(int argc, char** argv)
     li2.show();
     li2.add(n10);
     li2.show();
+    system("pause");
     return 0;
 
 }
