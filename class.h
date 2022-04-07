@@ -2,94 +2,27 @@
 #include <string>
 #include <cstdlib>
 #include <iostream>
-class nodeint{
-  private:
-    int value;
-    nodeint* next;
-  public:
-  nodeint(int value){
-      this->value = value;
-      this->next = NULL;
-  }
-  void setnext(nodeint* ptr){
-      this->next = ptr;
-  }
-  nodeint* getnext(){
-      return this->next;
-  }
-  void setvalue(int value){
-      this->value = value;
-  }
-  int getvalue(){
-      return this->value;
-  }
-  void show(){
-      if (this->next != NULL){
-          std::cout<<this->value<<"->";
-      }
-      else{
-          std::cout<<this->value<<std::endl;
-      }
-  }
-  
-};
-
-class LinkedListInt{
-    private:
-        nodeint* head;
-        int length;
-    public:
-    LinkedListInt(){
-        nodeint* head = NULL;
-        this->head = head;
-        this->length = 0;
-    }
-    void add(nodeint addpoint){
-        nodeint* prePtr = this->head;
-        if (this->head == NULL){
-            this->head = &addpoint;	 
-        }
-        else{
-            while(prePtr->getnext() != NULL){
-                prePtr = prePtr->getnext();
-                
-            }
-            prePtr->setnext(&addpoint);
-        }
-        this->length+= 1;
-    }
-    int getlength(){
-        return this->length;
-    }
-    void show(){
-        nodeint* headptr = this->head;
-        int i;
-        for (i = 0;i< this->length;i++){
-            headptr->show();
-            headptr = headptr->getnext();
-        }
-        printf("\n");
-    }
-};
+#define MAX 10000
+template <typename T>
 class node{
   private:
-    std::string value;
+    T value;
     node* next;
   public:
-  node(std::string value){
+	node(T value){
       this->value = value;
       this->next = NULL;
   }
-  void setnext(node* ptr){
+  void setnext(node<T>* ptr){
       this->next = ptr;
   }
   node* getnext(){
       return this->next;
   }
-  void setvalue(std::string value){
+  void setvalue(T value){
       this->value = value;
   }
-  std::string getvalue(){
+  T getvalue(){
       return this->value;
   }
   void show(){
@@ -105,19 +38,18 @@ class node{
 
 class LinkedListString{
     private:
-        node* head;
+        node<std::string>* head;
         int length;
     public:
     LinkedListString(){
-        node* head = NULL;
+        node<std::string>* head = NULL;
         this->head = head;
         this->length = 0;
     }
-    void add(node addpoint){
-        node* prePtr = this->head;
+    void add(node<std::string> addpoint){
+        node<std::string>* prePtr = this->head;
         if (this->head == NULL){
             this->head = &addpoint;
-            
         }
         else{
             while(prePtr->getnext()!= NULL){
@@ -132,7 +64,50 @@ class LinkedListString{
         return this->length;
     }
     void show(){
-        node* headptr = this->head;
+        node<std::string>* headptr = this->head;
+        int i;
+        for (i = 0;i< this->length;i++){
+            headptr->show();
+            headptr = headptr->getnext();
+        }
+        printf("\n");
+    }
+    node<std::string>* gethead(){
+    	return this->head;
+	}
+};
+class LinkedListInt{
+    private:
+        node<int>* head;
+        int length;
+    public:
+    LinkedListInt(){//constructor for LinkedListInt
+        node<int>* head = NULL;
+        this->head = head;
+        this->length = 0;
+    }
+    void add(node<int>* addpoint){//pass node address for argment
+        if (this->head == NULL){
+            this->head = addpoint;
+        }
+        else{
+        	node<int>* prePtr = this->head;
+            while(prePtr->getnext()!= NULL){
+                prePtr = prePtr->getnext();
+                
+            }
+            prePtr->setnext(addpoint);
+        }
+        this->length+= 1;
+    }
+    int getlength(){
+        return this->length;
+    }
+    node<int>* gethead(){
+    	return this->head;
+	}
+    void show(){
+        node<int>* headptr = this->head;
         int i;
         for (i = 0;i< this->length;i++){
             headptr->show();
@@ -141,10 +116,27 @@ class LinkedListString{
         printf("\n");
     }
 };
-class bignumber{
-    public:
-    bignumber(LinkedListString li){
-        int length = li.getlength();
-        
-    }
-};
+LinkedListInt create_linkedlist_int(int arr[],int len){
+	LinkedListInt li;
+	int i;
+	node<int> nodelist[MAX]; 
+	for(i = 0;i<len;i++){
+		nodelist[i] = node<int>(arr[i]);
+	}
+	for (i = 0; i<len ;i++){
+		li.add(&nodelist[i]);
+	}
+	return li;
+}
+LinkedListString create_linkedlist_str(std::string arr[],int len){
+	LinkedListString li;
+	int i;
+	node<std::string> nodelist[MAX]; 
+	for(i = 0;i<len;i++){
+		nodelist[i] = node<std::string>(arr[i]);
+	}
+	for (i = 0; i<len ;i++){
+		li.add(nodelist[i]);
+	}
+	return li;
+}

@@ -4,37 +4,13 @@
 
 int main(int argc, char** argv) 
 {
-    nodeint n6(200000000);
-    nodeint n7(123000222);
-    nodeint n8(221001005);
-    nodeint n9(115678441);
-    nodeint n10(115678341);        
-    node n1("200000000");
-    node n2("123000222");
-    node n3("221001005");
-    node n4("115678441");
-    node n5("115678341");
-    LinkedListString li;
-    LinkedListInt li2;
-    li.add(n1);
+	int arr[9] = {200000000,123000222,221001005,115678441,115678341,333221440,214151626,1113339999,222626444};
+    std::string st[5] = {"123456777","222111331","444111221","44848944","123919955"};
+	LinkedListInt li;
+	LinkedListString li2;
+    li = create_linkedlist_int(arr,9);
+    li2 = create_linkedlist_str(st,5); 
     li.show();
-    li.add(n2);
-    li.show();
-	li.add(n3);
-	li.show();
-    li.add(n4);
-    li.show();
-    li.add(n5);
-    li.show();
-    li2.add(n6);
-    li2.show();
-    li2.add(n7);
-    li2.show();
-    li2.add(n8);
-    li2.show();
-    li2.add(n9);
-    li2.show();
-    li2.add(n10);
     li2.show();
     system("pause");
     return 0;
