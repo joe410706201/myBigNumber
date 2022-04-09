@@ -9,6 +9,8 @@ class node{
     T value;
     node* next;
   public:
+  	node(){	
+	}
 	node(T value){
       this->value = value;
       this->next = NULL;
